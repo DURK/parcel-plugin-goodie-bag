@@ -13,8 +13,9 @@ const goodieBagHeaderComment = `/**
 */`;
 
 module.exports = function(bundler) {
+  const indexHtmlFiles = ['index.html', 'index.develop.html', 'index.staging.html', 'index.master.html'];
   bundler.on('bundled', bund => {
-    if (bund.type === 'html' && bund.entryAsset.basename === 'index.html') {
+    if (bund.type === 'html' && indexHtmlFiles.indexOf(bund.entryAsset.basename) !== -1) {
       injectGoodies(bund);
     }
   });
